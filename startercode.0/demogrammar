@@ -1,0 +1,18 @@
+S -> NP VP # 1.0
+NP -> DT NN # 0.3
+NP -> time # 0.05
+NP -> fruit # 0.05
+NP -> NN NNS # 0.6
+VP -> VBP NP # 0.7
+VP -> flies # 0.1
+VP -> VP PP # 0.2
+PP -> IN NP # 1.0
+DT -> a # 0.5
+DT -> an # 0.5
+NN -> time # 0.25
+NN -> fruit # 0.25
+NN -> arrow # 0.25
+NN -> banana # 0.25
+NNS -> flies # 1.0
+VBP -> like # 1.0
+IN -> like # 1.0

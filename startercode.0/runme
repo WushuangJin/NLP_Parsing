@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -e
+
+# don't change these 4 lines
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TRAINING=$1;
+INPUT=$2;
+OUTPUT=$3;
+
+# you should change the lines below
+
+# 1) prepare the training data. This should take in $TRAINING, a file containing a set of trees,
+# and do some kind of preprocessing modifications to those trees, saving them off in a new file.
+
+
+$SCRIPTDIR/preprocess.py < $TRAINING | $SCRIPTDIR/unknown.py > $SCRIPTDIR/tmpfile
+$SCRIPTDIR/new_tree.py < $SCRIPTDIR/tmpfile > $SCRIPTDIR/grammer.txt
+
+# 2) Create a grammar from modified training data. This should take in whatever was written in
+# step 1 and produce a PCFG.  But in this stub code I'm just going
+# to create a grammar without paying attention to the input. THAT IS A BAD IDEA!
+
+
+$SCRIPTDIR/new_tree.py < $SCRIPTDIR/tmpfile > $SCRIPTDIR/demogrammer
+
+
+
+# 3) Take in a grammar (the grammar created in step 2) and a file of input strings, one per line (e.g. dev.strings)
+# and produce a file of output trees, one tree per line. If you give it a different
+# grammar or a different input it should produce a different output.
+# The provided parser is
+# strictly right branching (cf. slides) and gets 12.4 f on dev.strings It ignores the grammar
+
+$SCRIPTDIR/rbranch.py -i $INPUT -g $SCRIPTDIR/demogrammer -o $OUTPUT
